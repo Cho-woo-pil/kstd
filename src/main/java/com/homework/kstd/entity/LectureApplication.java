@@ -4,17 +4,17 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
-@Setter
 @Getter
 public class LectureApplication {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     private UUID applicationId;
 
     private String lectureId;
