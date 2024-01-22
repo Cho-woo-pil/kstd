@@ -23,7 +23,7 @@ public class Lecture {
 
     private int totalParticipants;
 
-    private int currentParticipants;
+    private int currentParticipants = 0;
 
     @Column(length = 1000)
     private String lectureContent;
@@ -34,5 +34,19 @@ public class Lecture {
 
     private LocalDateTime endTime;
 
-    private boolean isFull;
+    private boolean isFull = false;
+
+    public Lecture(String speaker, String venueId, String lectureContent, int totalParticipants, LocalDateTime startTime, int duration) {
+        this.speaker = speaker;
+        this.venueId = venueId;
+        this.lectureContent = lectureContent;
+        this.totalParticipants = totalParticipants;
+        this.startTime = startTime;
+        this.duration = duration;
+        calculateEndTime();
+    }
+
+    private void calculateEndTime() {
+        this.endTime = this.startTime.plusMinutes(this.duration);
+    }
 }
