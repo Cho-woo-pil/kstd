@@ -9,11 +9,18 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/venue")
-public class GetVenueController {
+public class VenueController {
 
     private final GetVenueService getVenueService;
+    private final InsertVenueService insertVenueService;
     @GetMapping()
     public ResponseEntity<?> insertVenue() {
         return getVenueService.getVenue();
+    }
+
+    @PostMapping()
+    public ResponseEntity<?> insertVenue(@RequestParam(name = "venueName") String venueName) {
+
+        return insertVenueService.insertVenue(venueName);
     }
 }
