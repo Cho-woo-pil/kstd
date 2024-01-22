@@ -20,8 +20,13 @@ public class LectureApplication {
 
     private String employeeId;
 
-    private boolean isDeleted;
+    private boolean isDeleted = false;
 
     @Version
     private Long version;
+
+    public LectureApplication(String lectureId, String employeeId) {
+        this.lectureId = lectureId;
+        this.employeeId = employeeId;
+    }
 }

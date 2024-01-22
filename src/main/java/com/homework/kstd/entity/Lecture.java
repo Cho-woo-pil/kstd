@@ -23,7 +23,7 @@ public class Lecture {
 
     private int totalParticipants;
 
-    private final int currentParticipants = 0;
+    private int currentParticipants = 0;
 
     @Column(length = 1000)
     private String lectureContent;
@@ -34,7 +34,7 @@ public class Lecture {
 
     private LocalDateTime endTime;
 
-    private final boolean isFull = false;
+    private boolean isFull = false;
 
     public Lecture(String speaker, String venueId, String lectureContent, int totalParticipants, LocalDateTime startTime, int duration) {
         this.speaker = speaker;
@@ -48,5 +48,18 @@ public class Lecture {
 
     private void calculateEndTime() {
         this.endTime = this.startTime.plusMinutes(this.duration);
+    }
+
+    public void incrementCurrentParticipants() {
+        this.currentParticipants++;
+
+        if (this.currentParticipants == this.totalParticipants) {
+            setFull(true);
+        }
+    }
+
+    // Add a setter for isFull
+    public void setFull(boolean isFull) {
+        this.isFull = isFull;
     }
 }
