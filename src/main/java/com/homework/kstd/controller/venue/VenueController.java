@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/venue")
+@RequestMapping("/kstd/venue")
 public class VenueController {
 
     private final GetVenueService getVenueService;

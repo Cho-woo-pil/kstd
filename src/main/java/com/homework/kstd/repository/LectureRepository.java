@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 public interface LectureRepository extends JpaRepository<Lecture, UUID> {
@@ -13,4 +14,6 @@ public interface LectureRepository extends JpaRepository<Lecture, UUID> {
             "AND ((l.startTime >= :endTime AND l.endTime <= :startTime) " +
             "OR (l.endTime >= :startTime AND l.startTime <= :endTime))")
     boolean venueAvailable(String venueId, LocalDateTime startTime, LocalDateTime endTime);
+
+    List<Lecture> findByStartTimeBetween(LocalDateTime oneWeekAgo, LocalDateTime oneDayAfterNow);
 }

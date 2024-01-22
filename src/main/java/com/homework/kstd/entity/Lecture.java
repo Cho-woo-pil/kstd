@@ -23,7 +23,7 @@ public class Lecture {
 
     private int totalParticipants;
 
-    private int currentParticipants = 0;
+    private final int currentParticipants = 0;
 
     @Column(length = 1000)
     private String lectureContent;
@@ -34,7 +34,7 @@ public class Lecture {
 
     private LocalDateTime endTime;
 
-    private boolean isFull = false;
+    private final boolean isFull = false;
 
     public Lecture(String speaker, String venueId, String lectureContent, int totalParticipants, LocalDateTime startTime, int duration) {
         this.speaker = speaker;

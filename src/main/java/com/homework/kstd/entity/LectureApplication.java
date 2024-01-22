@@ -3,7 +3,6 @@ package com.homework.kstd.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
@@ -22,4 +21,7 @@ public class LectureApplication {
     private String employeeId;
 
     private boolean isDeleted;
+
+    @Version
+    private Long version;
 }
