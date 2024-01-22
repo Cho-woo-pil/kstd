@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:mysql://database-1.ckfd9z7bzzcw.ap-northeast-2.rds.amazonaws.com:3306/kstd
+    username: admin
+    password: admin1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        hbm2ddl:
+          auto: update
+    open-in-view: false
+
+
+logging:
+  level:
+    org:
+      springframework: DEBUG
+      hibernate: DEBUG
+
+
+
