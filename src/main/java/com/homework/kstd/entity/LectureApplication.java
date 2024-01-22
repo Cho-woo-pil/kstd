@@ -29,4 +29,8 @@ public class LectureApplication {
         this.lectureId = lectureId;
         this.employeeId = employeeId;
     }
+
+    public void cancel() {
+        this.isDeleted = true;
+    }
 }

@@ -58,8 +58,20 @@ public class Lecture {
         }
     }
 
+    public void decrementCurrentParticipants() {
+        if (this.currentParticipants > 0) {
+            this.currentParticipants--;
+
+            // 강의가 가득 차 있을 때 강의 신청 취소로 인해 강의가 다시 참가 가능한 상태가 되도록 처리
+            if (this.currentParticipants < this.totalParticipants) {
+                setFull(false);
+            }
+        }
+
+    }
     // Add a setter for isFull
     public void setFull(boolean isFull) {
         this.isFull = isFull;
     }
+
 }
