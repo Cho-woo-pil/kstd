@@ -33,6 +33,12 @@ public class LectureController {
         return getLectureListService.getAllLectureList();
     }
 
+    @GetMapping("/list/popular")
+    public ResponseEntity<?> getPopularLectureList() {
+
+        return getLectureListService.getPopularLectureList();
+    }
+
     @GetMapping("/applications/all")
     public ResponseEntity<?> getLectureApplicationList() {
 
