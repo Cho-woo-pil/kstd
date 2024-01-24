@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -18,4 +19,7 @@ public interface LectureApplicationRepository extends JpaRepository<LectureAppli
     Optional<LectureApplication> findLectureApplication(String lectureId, String employeeId);
 
     Collection<LectureApplication> findByLectureId(String lectureId);
+
+    List<LectureApplication> findByEmployeeIdAndIsDeleted(String employeeId, boolean isDeleted);
+
 }
