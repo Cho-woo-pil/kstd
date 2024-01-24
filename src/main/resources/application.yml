@@ -22,8 +22,27 @@ spring:
 logging:
   level:
     org:
-      springframework: DEBUG
-      hibernate: DEBUG
+      springframework: INFO
+      hibernate: INFO
+
+swagger:
+  enabled: true # Swagger 활성화 여부 (기본값: true)
+  title: 키다리스튜디오 사전과제_조우필
+  description: 키다리스튜디오 채용과제에 맞는 API 작성
+  version: 1.0 # API 버전
+  contact:
+    name: 조우필 # 연락처 정보
+    email: jwp4465@naver.com
+
+# Swagger UI 활성화 및 경로 설정
+springdoc:
+  swagger-ui:
+    enabled: true
+  openapi-ui:
+    enabled: true
+  api-docs:
+    enabled: true
+  paths-to-match: /kstd/**
 
 
 

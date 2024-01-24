@@ -49,12 +49,13 @@ public class GetLectureListService {
         // 3일 이내에 신청된 강의 수 조회
         List<Object[]> appliedCounts = lectureApplicationRepository.countLectureApplicationsWithin3Days(threeDaysBeforeNow, today);
 
+        if (appliedCounts != null) {
         // 3일 이내에 신청된 강의 수를 매핑
         Map<String, Long> appliedCountsMap = appliedCounts.stream()
                 .collect(Collectors.toMap(arr -> (String) arr[0], arr -> (Long) arr[1]));
 
         // appliedCountsMap을 기준으로 정렬
-        upcomingLectures.sort(Comparator.comparing(lecture -> appliedCountsMap.getOrDefault(lecture.getLectureId().toString(), 0L), Comparator.reverseOrder()));
+        upcomingLectures.sort(Comparator.comparing(lecture -> appliedCountsMap.getOrDefault(lecture.getLectureId().toString(), 0L), Comparator.reverseOrder()));}
         List<LectureListPresenter> upcomingLectureDtos = convertToDto(upcomingLectures);
 
         return ResponseEntity.ok(upcomingLectureDtos);
