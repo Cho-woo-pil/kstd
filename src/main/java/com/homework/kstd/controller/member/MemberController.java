@@ -6,6 +6,7 @@ import com.homework.kstd.service.member.CancleLectureService;
 import com.homework.kstd.service.member.GetApplyHistoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/kstd/lecture")
+@Tag(name = "회원 API", description = "회원관련 API")
 public class MemberController {
 
     private final ApplyLectureService applyLectureService;
