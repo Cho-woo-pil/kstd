@@ -37,6 +37,7 @@ public class GetLectureApplicationListService {
     private LectureApplicationPresenter convertToPresenter(Lecture lecture) {
 
         List<EmployeeListPresenter> employeeListPresenters = lectureApplicationRepository.findByLectureId(lecture.getLectureId().toString()).stream()
+                .filter(lectureApplication -> !lectureApplication.isDeleted())
                 .map(lectureApplication -> new EmployeeListPresenter(lectureApplication.getEmployeeId(), lectureApplication.getAppliedAt()))
                 .toList();
         return new LectureApplicationPresenter(
