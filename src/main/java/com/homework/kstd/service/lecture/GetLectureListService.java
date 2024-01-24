@@ -2,7 +2,7 @@ package com.homework.kstd.service.lecture;
 
 import com.homework.kstd.entity.Lecture;
 import com.homework.kstd.entity.Venue;
-import com.homework.kstd.presentor.LectureListPresentor;
+import com.homework.kstd.presentor.LectureListPresenter;
 import com.homework.kstd.repository.LectureRepository;
 import com.homework.kstd.repository.VenueRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,9 +26,9 @@ public class GetLectureListService {
         LocalDateTime oneWeekAfterNow = LocalDateTime.now().plusWeeks(1);
         LocalDateTime ondDayBeforeNow = LocalDateTime.now().minusDays(1);
         List<Lecture> upcomingLectures = lectureRepository.findByStartTimeBetween(ondDayBeforeNow, oneWeekAfterNow);
-        List<LectureListPresentor> upcomingLectureDtos = convertToDto(upcomingLectures);
+        List<LectureListPresenter> upcomingLectureDtos = convertToDto(upcomingLectures);
 
-        upcomingLectureDtos.sort(Comparator.comparing(LectureListPresentor::get신청인원));
+        upcomingLectureDtos.sort(Comparator.comparing(LectureListPresenter::get신청인원));
 
         return ResponseEntity.ok(upcomingLectureDtos);
     }
@@ -36,23 +36,23 @@ public class GetLectureListService {
     public ResponseEntity<?> getAllLectureList() {
         System.out.println(LocalDateTime.now());
         List<Lecture> allLecture = lectureRepository.findAll();
-        List<LectureListPresentor> upcomingLectureDtos = convertToDto(allLecture);
+        List<LectureListPresenter> upcomingLectureDtos = convertToDto(allLecture);
 
-        upcomingLectureDtos.sort(Comparator.comparing(LectureListPresentor::get강의시작시간));
+        upcomingLectureDtos.sort(Comparator.comparing(LectureListPresenter::get강의시작시간));
 
         return ResponseEntity.ok(upcomingLectureDtos);
     }
 
 
-    private List<LectureListPresentor> convertToDto(List<Lecture> lectures) {
+    private List<LectureListPresenter> convertToDto(List<Lecture> lectures) {
         return lectures.stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
 
-    private LectureListPresentor convertToDto(Lecture lecture) {
+    private LectureListPresenter convertToDto(Lecture lecture) {
         Optional<Venue> venueOptional = venueRepository.findById(UUID.fromString(lecture.getVenueId()));
-        LectureListPresentor dto = new LectureListPresentor();
+        LectureListPresenter dto = new LectureListPresenter();
         dto.set강의ID(lecture.getLectureId().toString());
         dto.set강연자(lecture.getSpeaker());
         venueOptional.ifPresent(venue -> dto.set강연장(venue.getVenueName()));

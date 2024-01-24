@@ -1,6 +1,7 @@
 package com.homework.kstd.controller.lecture;
 
 import com.homework.kstd.dto.RegistorLectureDto;
+import com.homework.kstd.service.lecture.GetLectureApplicationListService;
 import com.homework.kstd.service.lecture.GetLectureListService;
 import com.homework.kstd.service.lecture.RegistorLectureService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class LectureController {
     private final RegistorLectureService registorLectureService;
     private final GetLectureListService getLectureListService;
+    private final GetLectureApplicationListService getLectureApplicationListService;
 
     @PostMapping("/registor")
     public ResponseEntity<?> registorLecture(@RequestBody RegistorLectureDto dto) {
@@ -30,4 +32,19 @@ public class LectureController {
 
         return getLectureListService.getAllLectureList();
     }
+
+    @GetMapping("/applications/all")
+    public ResponseEntity<?> getLectureApplicationList() {
+
+        return getLectureApplicationListService.getLectureApplicationList();
+    }
+
+    @GetMapping("/applications/{lectureId}")
+    public ResponseEntity<?> getLectureApplication(@PathVariable String lectureId) {
+
+        return getLectureApplicationListService.getLectureApplication(lectureId);
+    }
+
+
+
 }

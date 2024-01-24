@@ -4,6 +4,7 @@ import com.homework.kstd.entity.LectureApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,4 +16,6 @@ public interface LectureApplicationRepository extends JpaRepository<LectureAppli
     @Query("SELECT l FROM LectureApplication l " +
             "WHERE l.lectureId = :lectureId AND l.employeeId = :employeeId AND l.isDeleted = false")
     Optional<LectureApplication> findLectureApplication(String lectureId, String employeeId);
+
+    Collection<LectureApplication> findByLectureId(String lectureId);
 }

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @NoArgsConstructor
-public class LectureListPresentor {
+public class LectureListPresenter {
     private String 강의ID;
     private String 강연자;
     private String 강연장;
@@ -18,5 +18,4 @@ public class LectureListPresentor {
     private int 강의시간;
     private int 총인원;
     private int 신청인원;
-
 }
