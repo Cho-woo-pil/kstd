@@ -3,7 +3,9 @@ package com.homework.kstd.repository;
 import com.homework.kstd.entity.LectureApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -22,4 +24,12 @@ public interface LectureApplicationRepository extends JpaRepository<LectureAppli
 
     List<LectureApplication> findByEmployeeIdAndIsDeleted(String employeeId, boolean isDeleted);
 
+    @Query("SELECT la.lectureId, COUNT(la) " +
+            "FROM LectureApplication la " +
+            "WHERE la.appliedAt BETWEEN :threeDaysBeforeNow AND :today " +
+            "AND la.isDeleted = false " +
+            "GROUP BY la.lectureId")
+    List<Object[]> countLectureApplicationsWithin3Days(
+            @Param("threeDaysBeforeNow") LocalDateTime threeDaysBeforeNow,
+            @Param("today") LocalDateTime today);
 }
