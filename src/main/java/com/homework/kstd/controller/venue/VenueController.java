@@ -18,15 +18,15 @@ public class VenueController {
     private final GetVenueService getVenueService;
     private final InsertVenueService insertVenueService;
     @GetMapping()
-    @Operation(summary = "강의실 등록 API", description = "강의실 등록 성공 API 입니다.")
-    @ApiResponse(responseCode = "200", description = "강의실 등록 성공")
-    public ResponseEntity<?> insertVenue() {
+    @Operation(summary = "강의실 조회 API", description = "강의실 조회하는 API 입니다.")
+    @ApiResponse(responseCode = "200", description = "강의실 조회 성공")
+    public ResponseEntity<?> getVenue() {
         return getVenueService.getVenue();
     }
 
     @PostMapping()
-    @Operation(summary = "강의실 조회 API", description = "강의실을 조회하는 API 입니다.")
-    @ApiResponse(responseCode = "200", description = "강의실 조회 성공")
+    @Operation(summary = "강의실 등록 API", description = "강의실을 등록하는 API 입니다.")
+    @ApiResponse(responseCode = "200", description = "강의실 등록 성공")
     public ResponseEntity<?> insertVenue(@RequestParam(name = "venueName") String venueName) {
 
         return insertVenueService.insertVenue(venueName);
