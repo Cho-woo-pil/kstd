@@ -23,4 +23,7 @@ public class Venue {
         this.venueName = venueName;
     }
 
+    public void setVenue(UUID uuid) {
+        this.venueId = uuid;
+    }
 }

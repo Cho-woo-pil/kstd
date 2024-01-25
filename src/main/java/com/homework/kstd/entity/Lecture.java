@@ -74,4 +74,9 @@ public class Lecture {
         this.isFull = isFull;
     }
 
+
+    public void setLectureId(UUID uuid) {
+        this.lectureId = uuid;
+    }
+
 }
